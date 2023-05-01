@@ -1,0 +1,43 @@
+<%= render 'books/search', user: @user %>
+
+<h2>
+  <%= @range %>s search for "<%= @word %>"
+</h2>
+
+<table class="table table-hover table-inverse">
+  <% if @range == "User" %>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <!--検索対象モデルがUserの時 -->
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td></td>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <td>Opinion</td>
+      </tr>
+    </thead>
+    <!--検索対象モデルがBookの時 -->
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
