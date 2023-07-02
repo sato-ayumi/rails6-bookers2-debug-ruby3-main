@@ -13,6 +13,9 @@ class BookCommentsController < ApplicationController
     @book_comment = BookComment.find_by(id: params[:id], book_id: params[:book_id])
     @book_comment.destroy
     @book_comment = BookComment.new
+    # 以下の書き方も正解
+    # BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
+    # redirect_to request.referer
   end  
   
   private
