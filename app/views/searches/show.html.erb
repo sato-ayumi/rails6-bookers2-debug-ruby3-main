@@ -1,0 +1,4 @@
+<% if @my_user_id != e.user.id %>
+  <h2><%= @entries.user.name %>さんとのトークルーム</h2>
+<% end %>
+<%= link_to "ユーザー一覧に戻る", users_path %>
