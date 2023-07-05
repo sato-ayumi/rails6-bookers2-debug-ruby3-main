@@ -5,22 +5,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
+    # 他のユーザーのプロフィールページを表示している場合
     unless @user.id == current_user.id
-      @current_user_entry.each do |cu|
-        @user_entry.each do |u|
-          if cu.room_id == u.room_id then
-            @is_room = true
-            @room_id = cu.room_id
-          end
-        end
-      end
+      # 二人のルームがあるか一つずつ確認
+      @is_room = @current_user_entry.any? { |cu| @user_entry.any? { |u| cu.room_id == u.room_id } }
       unless @is_room
         @room = Room.new
         @entry = Entry.new
       end
     end
-        
-      end
     @books = @user.books
     @book = Book.new
   end
