@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
       Entry.create(user_id: @user.id, room_id: @room.id)
     end
     #チャットの一覧
-    @messages = @room.chats
+    @messages = @room.messages
     #チャットの投稿
     @message = Message.new(room_id: @room.id)
   end
@@ -38,11 +38,11 @@ class MessagesController < ApplicationController
   private
   
   def message_params
-    params.require(:chat).permit(:message, :room_id)
+    params.require(:message).permit(:message, :room_id)
   end
   
   # 相互フォローしていない場合
-  def regect_non_related
+  def reject_non_related
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)
       redirect_to books_path
