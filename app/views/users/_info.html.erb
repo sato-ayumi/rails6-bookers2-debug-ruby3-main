@@ -28,12 +28,14 @@
       <% if user != current_user%>
         <% if current_user.following?(user) %>
           <%= link_to "フォロー外す", user_relationship_path(user.id), method: :delete %>
-          <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
-            <%= link_to 'チャットを始める', message_path(user.id), class: "ml-3" %>
-          <% end %>
         <% else %>
           <%= link_to "フォローする", user_relationship_path(user.id), method: :post %>
         <% end %>
+      <% end %>
+    </th>
+    <th> 
+      <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+        <%= link_to 'chatを始める', message_path(user.id), class: "ml-3" %>
       <% end %>
     </th>
   </tr>
