@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationship, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
+    get 'followings', to: 'relationships#followings', as: 'followings'
+    get 'followers', to: 'relationships#followers', as: 'followers'
+    get 'search', to: 'users#search'
   end
   resources :messages, only: [:create, :show]
   get "search" => "searches#search"
