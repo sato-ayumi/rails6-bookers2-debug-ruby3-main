@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'search', to: 'users#search'
   end
   resources :messages, only: [:create, :show]
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update]
   get "search" => "searches#search"
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
